@@ -1,4 +1,4 @@
--module(learn_erlang).
+-module(hello_world).
 -export([hello/0, average/2]).
 
 % Prints "Hello, World!"
@@ -35,9 +35,9 @@ factorial(N) when N =< 1 -> 1; % If N is less than or equal to 1, return 1.
 factorial(N) -> N * factorial(N-1). % Otherwise, return N * factorial(N-1).
 
 % Demostration of tail recursion.
-factorial(N) -> factorial_tail(N, 1). % factorial_tail(N, 1) is the base case.
-factorial(0, Result) -> Result; % factorial_tail(0, Result) is the recursive case.
-factorial(N, Result) -> factorial(N-1, Result * N). % factorial_tail(N-1, Result * N) is the recursive case.
+factorial_tail(N) -> factorial_tail(N, 1). % factorial_tail(N, 1) is the base case.
+factorial_tail(0, Result) -> Result; % factorial_tail(0, Result) is the recursive case.
+factorial_tail(N, Result) -> factorial_tail(N-1, Result * N). % factorial_tail(N-1, Result * N) is the recursive case.
 
 % Demonstration of lambda functions and anonymous functions.
 % Lambda functions are functions that are defined without a name.
@@ -45,27 +45,27 @@ factorial(N, Result) -> factorial(N-1, Result * N). % factorial_tail(N-1, Result
 encrypt(Value, Cipher_Function) -> Cipher_Function(Value). % Cipher_Function(Value) is the function call.
 
 test_encrypt() ->   % Test the encrypt function.
-    Cipher1 = fun (X) X + 1 end, % Cipher1 is a lambda function.
-    Cipher2 = fun (X) (X * 2) - 3 end, % Cipher2 is a lambda function.
+    Cipher1 = fun (X) -> (X + 1) end, % Cipher1 is a lambda function.
+    Cipher2 = fun (X) -> (X * 2) - 3 end, % Cipher2 is a lambda function.
     11 = encrypt(10, Cipher1), % 11 = Cipher1(10) = 10 + 1 = 11.
     17 = encrypt(10, Cipher2), % 17 = Cipher2(10) = (10 * 2) - 3 = 17.
-    3.0 encrypt(1000, fun math:log10/1), % 3.0 = math:log10(1000) = math:log10(1000) / 1 = 3.0.
+    3.0 = encrypt(1000, fun math:log10/1), % 3.0 = math:log10(1000) = math:log10(1000) / 1 = 3.0.
     ok.
 
 % Demonstration of lists.
-playing_with_lists() ->
+playing_with_lists_0() ->
    L1 = [1, 2, 3, 4],
    ok.
 
 % Demonstration of pattern matching and prepending.
-playing_with_lists() ->
+playing_with_lists_1() ->
     L1 = [1, 2, 3], % L1 is a list with three elements.
     L2 = [0|L1], % Prepend 0 to L1.
     [0, 1, 2, 3] = L2, % Pattern matching on L2.
     ok.
 
 % Demonstration of further pattern matching.
-playing_with_lists() ->
+playing_with_lists_2() ->
     L1 = [1, 2, 3, 4], % L1 is a list with four elements.
     [A | _] = L1, % A is the first element of L1.
     1 = A, % Pattern matching on A.
@@ -83,7 +83,7 @@ display_first([First|_Rest]) -> % Display the first element of a list.
     io:format("First: ~p~n", [First]).  % ~p is a placeholder for a list.
 
 % Driver function for display_first.
-playing_with_lists() ->
+playing_with_lists_3() ->
     L1 = [1, 2, 3, 4], % L1 is a list with four elements.
     display_first(L1), % Display the first element of L1.
     display_first([]), % Display the first element of an empty list.
@@ -92,19 +92,19 @@ playing_with_lists() ->
 % Display all of the elements of the list.
 display_all([]) ->
     io:format("End of the list.~n"); % Print "End of the list."
-display_all(First|Rest) -> % Display the first element of a list.
+display_all([First|Rest]) -> % Display the first element of a list.
     io:format("~p ", [First]), % ~p is a placeholder for a list.
     display_all(Rest). % Display the rest of the list.
 
 % Driver function for display_all.
-playing_with_lists() ->
+playing_with_lists_4() ->
     L1 = [1, 2, 3, 4], % L1 is a list with four elements.
     display_all(L1), % Display all of the elements of L1.
     display_all([]), % Display all of the elements of an empty list.
     ok.
 
 % Demonstration of list comprehension using 'lists:seq'.
-playing_with_lists() ->
+playing_with_lists_5() ->
     L1 = lists:seq(1, 10), % L1 is a list of the numbers 1 through 10.
     [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] = L1, % Pattern matching on L1.
 
