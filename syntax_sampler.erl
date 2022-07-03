@@ -42,7 +42,7 @@ recurse(N) -> N * recurse(N - 1).   % Recursive case.
 % This function takes an atom as a parameter and prints
 % a greeting based on which language atom is passed in.
 say_hello(X) -> % X is an atom.
-    case X of   
+    case X of
         french -> io:format("~nBonjour~n");                 % X is french.
         english -> io:format("~nHello~n");                  % X is english.
         german -> io:format("~nHallo~n");                   % X is german.
